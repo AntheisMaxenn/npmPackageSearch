@@ -1,0 +1,21 @@
+<div class="wrapper">
+    <mat-form-field class="search-container" appearance="fill">
+        <mat-label>Search...</mat-label>
+        <input matInput type="text" #searchInput name="searchInput" (keyup)="search(searchInput.value)">
+        <button *ngIf="searchInput" matSuffix mat-icon-button (click)="searchInput.value= ''" aria-label="Clear">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <ul>
+        <li class="card" *ngFor="let package of packages$ | async" (click)="openPackageLink(package.name)">
+
+            <p>{{ package.name }} | V. {{package.version}} </p>
+            <p>
+                <b>--</b> {{package.description ? package.description : "NA"}}
+            </p>
+
+        </li>
+    </ul>
+
+</div>
